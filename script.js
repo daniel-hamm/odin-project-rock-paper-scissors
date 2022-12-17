@@ -1,3 +1,4 @@
+// function to generate a random computer selection for either rock, paper or scissors
 function getComputerChoice() {
     // assign a random number from 1 to 3 to a variable
     let random_number = Math.floor(Math.random() * 3) + 1;
@@ -24,6 +25,7 @@ function getComputerChoice() {
     }
 }
 
+// function to let the player choose a selection of either rock, paper or scissors
 function playerSelection() {
     // failcheck if the input is NOT rock, paper or scissors
     let inputCheck = false;
@@ -52,4 +54,39 @@ function playerSelection() {
     } while(inputCheck === false);
 
     
+}
+
+// function to play a single round of rock, paper or scissors
+// note that playerSelection here is a function parameter, not the previous function
+function playRound(playerSelection, computerSelection) {
+
+    // debug output of both selections
+    console.log(playerSelection);
+    console.log(computerSelection);
+
+    // same selection -> draw
+    if(playerSelection === computerSelection)
+        return "Draw";
+
+    // compare the player selection with the computer selection
+    switch(playerSelection) {
+        case "Rock":
+            if(computerSelection === "Paper") return "Computer Wins";
+            else if(computerSelection === "Scissors") return "Player Wins";
+            break;
+        case "Paper":
+            if(computerSelection === "Rock") return "Player Wins";
+            else if(computerSelection === "Scissors") return "Computer Wins";
+            break;
+        case "Scissors":
+            if(computerSelection === "Paper") return "Player Wins";
+            else if(computerSelection === "Rock") return "Computer Wins";
+            break;
+        default:
+            // can't happen
+            break;
+    }
+    // rock beats scissors
+    // scissors beat paper
+    // paper beats rock
 }
