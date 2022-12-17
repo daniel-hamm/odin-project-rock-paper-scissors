@@ -23,3 +23,8 @@ function getComputerChoice() {
             break;
     }
 }
+
+function playerSelection() {
+    let playerChoice = prompt("Please enter rock, paper or scissors: ");
+    console.log(playerChoice);
+}
