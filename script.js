@@ -70,23 +70,34 @@ function playRound(playerSelection, computerSelection) {
 
     // compare the player selection with the computer selection
     switch(playerSelection) {
-        case "Rock":
-            if(computerSelection === "Paper") return "Computer Wins";
-            else if(computerSelection === "Scissors") return "Player Wins";
+        case "Rock":                                                            // Player chose Rock
+            if(computerSelection === "Paper") return "Computer Wins";           // Computer chose Paper? Computer wins.
+            else if(computerSelection === "Scissors") return "Player Wins";     // Computer chose Scissors? Player wins.
             break;
-        case "Paper":
-            if(computerSelection === "Rock") return "Player Wins";
-            else if(computerSelection === "Scissors") return "Computer Wins";
+        case "Paper":                                                           // Player chose Paper
+            if(computerSelection === "Rock") return "Player Wins";              // Computer chose Rock? Player wins.
+            else if(computerSelection === "Scissors") return "Computer Wins";   // Computer chose Scissors? Computer wins.
             break;
-        case "Scissors":
-            if(computerSelection === "Paper") return "Player Wins";
-            else if(computerSelection === "Rock") return "Computer Wins";
+        case "Scissors":                                                        // Player chose Scissors
+            if(computerSelection === "Paper") return "Player Wins";             // Computer chose Paper? Player wins.
+            else if(computerSelection === "Rock") return "Computer Wins";       // Computer chose Rock? Computer wins.
             break;
         default:
             // can't happen
             break;
     }
-    // rock beats scissors
-    // scissors beat paper
-    // paper beats rock
+
+}
+
+// function to start the complete game with multiple rounds
+function game() {
+
+    let result = "";
+
+    for(let i = 0; i <= 4; i++) {
+        result = playRound(playerSelection(), getComputerChoice());
+        console.log(result);
+    }
+
+
 }
