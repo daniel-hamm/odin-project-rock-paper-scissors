@@ -25,6 +25,16 @@ function getComputerChoice() {
 }
 
 function playerSelection() {
+    // open a prompt to let the player choose rock, paper or scissors
     let playerChoice = prompt("Please enter rock, paper or scissors: ");
+    
+    // transform the user input
+    // first letter uppercase
+    // following letters lower case
+    playerChoice = playerChoice.substring(0,1).toUpperCase() + playerChoice.slice(1).toLowerCase();
+
+    // check if rock, paper or scissors is the input
+    // if something else is entered, open prompt again
+
     console.log(playerChoice);
 }
