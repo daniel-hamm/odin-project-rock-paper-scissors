@@ -38,8 +38,17 @@ function playerSelection() {
         playerChoice = playerChoice.substring(0,1).toUpperCase() + playerChoice.slice(1).toLowerCase();
 
         // check if rock, paper or scissors is the input
+        // there is no need to set failcheck "true", as return stops the function anyways
+        if(playerChoice === "Rock")
+            return playerChoice;
+        else if(playerChoice === "Paper")
+            return playerChoice;
+        else if(playerChoice === "Scissors")
+            return playerChoice;
+        else {
+            window.alert("Error! Wrong Input, try again!");
+        }
         // if something else is entered, open prompt again
-        console.log(playerChoice);
     } while(inputCheck === false);
 
     
