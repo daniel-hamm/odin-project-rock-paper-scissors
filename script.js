@@ -118,6 +118,7 @@ function game() {
         console.log(result);                                // return the rounds result
         console.log("Player Score: " + player_score);       // return the current player score
         console.log("Computer Score: " + computer_score);   // return the current computer score
+        console.log("");                                    // add a new line for better reading
     }
 
     // select the winner
