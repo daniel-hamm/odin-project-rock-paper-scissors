@@ -115,13 +115,17 @@ function game() {
                 break;
         }
 
-        console.log(result);
-        console.log("Player Score: " + player_score);
-        console.log("Computer Score: " + computer_score);
-      
-        
-
+        console.log(result);                                // return the rounds result
+        console.log("Player Score: " + player_score);       // return the current player score
+        console.log("Computer Score: " + computer_score);   // return the current computer score
     }
 
+    // select the winner
+    if(player_score === computer_score)                     // same score -> draw
+        console.log("Final Result: Draw");
+    else if(player_score > computer_score)                  // player score higher than computer score -> player wins
+        console.log("Final Result: Player Wins");         
+    else if(player_score < computer_score)
+        console.log("Final Result: Computer Wins");         // player score lower than computer score -> computer wins
 
 }
