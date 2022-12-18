@@ -61,8 +61,8 @@ function playerSelection() {
 function playRound(playerSelection, computerSelection) {
 
     // debug output of both selections
-    console.log(playerSelection);
-    console.log(computerSelection);
+    console.log("Player selected: " + playerSelection);
+    console.log("Computer selected: " + computerSelection);
 
     // same selection -> draw
     if(playerSelection === computerSelection)
@@ -92,11 +92,35 @@ function playRound(playerSelection, computerSelection) {
 // function to start the complete game with multiple rounds
 function game() {
 
-    let result = "";
+    let result = "";            // create the result string
+    let player_score = 0;       // set the player score to start with to 0
+    let computer_score = 0;     // set the computer score to start with to 0
 
+    // loop for 5 rounds
     for(let i = 0; i <= 4; i++) {
-        result = playRound(playerSelection(), getComputerChoice());
+        result = playRound(playerSelection(), getComputerChoice());     // play one round and temporarily save the result
+        
+        switch(result){
+            case "Player Wins":
+                player_score++;
+                break;
+            case "Computer Wins":
+                computer_score++;
+                break;
+            case "Draw":
+                // nothing is added or removed
+                break;
+            default:
+                // can't happen
+                break;
+        }
+
         console.log(result);
+        console.log("Player Score: " + player_score);
+        console.log("Computer Score: " + computer_score);
+      
+        
+
     }
 
 
