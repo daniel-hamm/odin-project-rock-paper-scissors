@@ -1,3 +1,6 @@
+const user_selection_content = document.getElementById('user_selection');
+const computer_selection_content = document.getElementById('computer_selection');
+
 // function to generate a random computer selection for either rock, paper or scissors
 function getComputerChoice() {
     // assign a random number from 1 to 3 to a variable
@@ -7,14 +10,17 @@ function getComputerChoice() {
     switch(random_number) {
         // return rock if number = 1
         case 1: 
+            computer_selection_content.innerText = 'Rock';
             return "Rock";
             break;
         // return paper if number = 2
         case 2:
+            computer_selection_content.innerText = 'Paper';
             return "Paper";
             break;
         // return scissors if number = 3
         case 3:
+            computer_selection_content.innerText = 'Scissors';
             return "Scissors";
             break;
         // return an error if random fails
@@ -57,9 +63,6 @@ function playRound(playerSelection, computerSelection) {
     }
 
 }
-
-const user_selection_content = document.getElementById('user_selection');
-const computer_selection_content = document.getElementById('computer_selection');
 
 const button_rock = document.querySelector('#rock');
 button_rock.addEventListener('click', () => {
