@@ -1,6 +1,13 @@
+// global variables
 let user_counter = 0;           // global var for user points
 let computer_counter = 0;       // global var for computer points
 
+// js query selectors for the buttons ids
+const button_rock = document.querySelector('#rock');
+const button_paper = document.querySelector('#paper');
+const button_scissors = document.querySelector('#scissors');
+
+// js get elements to dynamically change their content
 const user_selection_content = document.getElementById('user_selection');
 const computer_selection_content = document.getElementById('computer_selection');
 const winner_selection_content = document.getElementById('winner_selection');
@@ -68,7 +75,10 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
+// helper function to count the players points
 function counter(winner) {
+
+    // check who won the round and increment the players points
     if(winner === "Player Wins")
         user_counter++;
     else if(winner === "Computer Wins")
@@ -78,20 +88,41 @@ function counter(winner) {
     console.log(computer_counter);
 }
 
-const button_rock = document.querySelector('#rock');
+// adds an event listener for the users rock button click event
 button_rock.addEventListener('click', () => {
+
+    // display that the user selected rock
     user_selection_content.innerText = 'Rock';
+
+    // we give the playRound function the users choice an the return of the computer generated choice function
+    // we set the return of the playRound function to be the inner text of the winner selection content
+    // we also use the return of playRound to access the counter function to count the players points
     counter(winner_selection_content.innerText = playRound("Rock", getComputerChoice()));
+
 });
 
-const button_paper = document.querySelector('#paper');
+// adds an event listener for the users paper button click event
 button_paper.addEventListener('click', () => {
+
+    // display that the user selected paper
     user_selection_content.innerText = 'Paper';
+
+    // we give the playRound function the users choice an the return of the computer generated choice function
+    // we set the return of the playRound function to be the inner text of the winner selection content
+    // we also use the return of playRound to access the counter function to count the players points
     counter(winner_selection_content.innerText = playRound("Paper", getComputerChoice()));
+
 });
 
-const button_scissors = document.querySelector('#scissors');
+// adds an event listener for the users scissors button click event
 button_scissors.addEventListener('click', () => {
+
+    // display that the user selected scissors
     user_selection_content.innerText = 'Scissors';
+
+    // we give the playRound function the users choice an the return of the computer generated choice function
+    // we set the return of the playRound function to be the inner text of the winner selection content
+    // we also use the return of playRound to access the counter function to count the players points
     counter(winner_selection_content.innerText = playRound("Scissors", getComputerChoice()));
+
 });
