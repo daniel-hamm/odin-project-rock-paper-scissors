@@ -25,37 +25,6 @@ function getComputerChoice() {
     }
 }
 
-// function to let the player choose a selection of either rock, paper or scissors
-function playerSelection() {
-    // failcheck if the input is NOT rock, paper or scissors
-    let inputCheck = false;
-
-    do {
-        // open a prompt to let the player choose rock, paper or scissors
-        let playerChoice = prompt("Please enter rock, paper or scissors: ");
-        
-        // transform the user input for comparison with computers choice
-        // first letter uppercase
-        // following letters lower case
-        playerChoice = playerChoice.substring(0,1).toUpperCase() + playerChoice.slice(1).toLowerCase();
-
-        // check if rock, paper or scissors is the input
-        // there is no need to set failcheck "true", as return stops the function anyways
-        if(playerChoice === "Rock")
-            return playerChoice;
-        else if(playerChoice === "Paper")
-            return playerChoice;
-        else if(playerChoice === "Scissors")
-            return playerChoice;
-        else {
-            window.alert("Error! Wrong Input, try again!");
-        }
-        // if something else is entered, open prompt again
-    } while(inputCheck === false);
-
-    
-}
-
 // function to play a single round of rock, paper or scissors
 // note that playerSelection here is a function parameter, not the previous function
 function playRound(playerSelection, computerSelection) {
@@ -89,44 +58,23 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-// function to start the complete game with multiple rounds
-function game() {
+const user_selection_content = document.getElementById('user_selection');
+const computer_selection_content = document.getElementById('computer_selection');
 
-    let result = "";            // create the result string
-    let player_score = 0;       // set the player score to start with to 0
-    let computer_score = 0;     // set the computer score to start with to 0
+const button_rock = document.querySelector('#rock');
+button_rock.addEventListener('click', () => {
+    user_selection_content.innerText = 'Rock';
+    playRound("Rock", getComputerChoice());
+});
 
-    // loop for 5 rounds
-    for(let i = 0; i <= 4; i++) {
-        result = playRound(playerSelection(), getComputerChoice());     // play one round and temporarily save the result
-        
-        switch(result){
-            case "Player Wins":
-                player_score++;
-                break;
-            case "Computer Wins":
-                computer_score++;
-                break;
-            case "Draw":
-                // nothing is added or removed
-                break;
-            default:
-                // can't happen
-                break;
-        }
+const button_paper = document.querySelector('#paper');
+button_paper.addEventListener('click', () => {
+    user_selection_content.innerText = 'Paper';
+    playRound("Paper", getComputerChoice());
+});
 
-        console.log(result);                                // return the rounds result
-        console.log("Player Score: " + player_score);       // return the current player score
-        console.log("Computer Score: " + computer_score);   // return the current computer score
-        console.log("");                                    // add a new line for better reading
-    }
-
-    // select the winner
-    if(player_score === computer_score)                     // same score -> draw
-        console.log("Final Result: Draw");
-    else if(player_score > computer_score)                  // player score higher than computer score -> player wins
-        console.log("Final Result: Player Wins");         
-    else if(player_score < computer_score)
-        console.log("Final Result: Computer Wins");         // player score lower than computer score -> computer wins
-
-}
+const button_scissors = document.querySelector('#scissors');
+button_scissors.addEventListener('click', () => {
+    user_selection_content.innerText = 'Scissors';
+    playRound("Scissors", getComputerChoice());
+});
