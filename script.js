@@ -1,6 +1,7 @@
 // global variables
 let user_counter = 0;           // global var for user points
 let computer_counter = 0;       // global var for computer points
+let rounds_counter = 0;         // global var to count the rounds
 
 // js query selectors for the buttons ids
 const button_rock = document.querySelector('#rock');
@@ -84,15 +85,52 @@ function playRound(playerSelection, computerSelection) {
 // helper function to count the players points
 function counter(winner) {
 
+    // increment the rounds counter
+    rounds_counter++;
+
     // check who won the round and increment the players points
-    if(winner === "Player Wins")
+    if(winner === "Player Wins") {
+
+        // increment the users points
         user_counter++;
-    else if(winner === "Computer Wins")
+
+        // update the users points on the website
+        user_points_content.innerText = user_counter;
+
+    }
+    else if(winner === "Computer Wins") {
+
+        // increment the computers points
         computer_counter++;
-    
-    user_points_content.innerText = user_counter;
-    
-    computer_points_content.innerText = computer_counter;
+
+        // update the computers points on the website
+        computer_points_content.innerText = computer_counter;
+
+    }
+
+    // play 5 rounds
+    // rounds counter starts a 1 (not 0), as it get increments in the first round
+    if(rounds_counter >= 5) {
+
+        // check who won the game
+        if(user_counter === computer_counter)                           // the counters are equal? draw
+            winner_selection_content.innerText = "Draw";        
+        else if(user_counter > computer_counter)
+            winner_selection_content.innerText = "Player Wins";         // the players counter is higher than the computers? player wins
+        else if (computer_counter > user_counter)
+            winner_selection_content.innerText = "Computer Wins";       // the computers counter is higher than the players? computer wins
+        
+        // reset all counters to 0 to start over again
+        rounds_counter = 0;
+        user_counter = 0;
+        computer_counter = 0;
+
+        // disable the buttons, so the user has to select first if he / she wants to play a new game
+        button_rock.disabled = true;
+        button_paper.disabled = true;
+        button_scissors.disabled = true;
+
+    }
 }
 
 // adds an event listener for the users rock button click event
@@ -102,9 +140,8 @@ button_rock.addEventListener('click', () => {
     user_selection_content.innerText = 'Rock';
 
     // we give the playRound function the users choice an the return of the computer generated choice function
-    // we set the return of the playRound function to be the inner text of the winner selection content
-    // we also use the return of playRound to access the counter function to count the players points
-    counter(winner_selection_content.innerText = playRound("Rock", getComputerChoice()));
+    // we set the return of playRound to access the counter function to count the players points
+    counter(playRound("Rock", getComputerChoice()));
 
 });
 
@@ -115,9 +152,8 @@ button_paper.addEventListener('click', () => {
     user_selection_content.innerText = 'Paper';
 
     // we give the playRound function the users choice an the return of the computer generated choice function
-    // we set the return of the playRound function to be the inner text of the winner selection content
-    // we also use the return of playRound to access the counter function to count the players points
-    counter(winner_selection_content.innerText = playRound("Paper", getComputerChoice()));
+    // we set the return of playRound to access the counter function to count the players points
+    counter(playRound("Paper", getComputerChoice()));
 
 });
 
@@ -128,8 +164,7 @@ button_scissors.addEventListener('click', () => {
     user_selection_content.innerText = 'Scissors';
 
     // we give the playRound function the users choice an the return of the computer generated choice function
-    // we set the return of the playRound function to be the inner text of the winner selection content
     // we also use the return of playRound to access the counter function to count the players points
-    counter(winner_selection_content.innerText = playRound("Scissors", getComputerChoice()));
+    counter(playRound("Scissors", getComputerChoice()));
 
 });
