@@ -3,22 +3,33 @@ let user_counter = 0;           // global var for user points
 let computer_counter = 0;       // global var for computer points
 let rounds_counter = 0;         // global var to count the rounds
 
-// js query selectors for the buttons ids
+// js query selectors for classes and ids
 const button_rock = document.querySelector('#rock');
 const button_paper = document.querySelector('#paper');
 const button_scissors = document.querySelector('#scissors');
 const button_reset = document.querySelector('#reset');
 
-// js get elements to dynamically change their content
-const user_selection_content = document.getElementById('user_selection');
-const computer_selection_content = document.getElementById('computer_selection');
-const winner_selection_content = document.getElementById('winner_selection');
-const user_points_content = document.getElementById('user_points');
-const computer_points_content = document.getElementById('computer_points');
+const user_selection_content = document.querySelector('#user_selection');
+const computer_selection_content = document.querySelector('#computer_selection');
+const winner_selection_content = document.querySelector('#winner_selection');
+const user_points_content = document.querySelector('#user_points');
+const computer_points_content = document.querySelector('#computer_points');
+
+const user_output_div = document.querySelector('.user_output');
+const computer_output_div = document.querySelector('.computer_output');
+const player_points_div = document.querySelector('.player_points');
+const winner_div = document.querySelector('.winner');
 
 // set the default values for the displayed counters
 user_points_content.innerText = user_counter;
 computer_points_content.innerText = computer_counter;
+
+//hidden things at start
+user_output_div.style.display = "none";
+computer_output_div.style.display = "none";
+player_points_div.style.display = "none";
+winner_div.style.display = "none";
+button_reset.style.display = "none";
 
 // function to generate a random computer selection for either rock, paper or scissors
 function getComputerChoice() {
@@ -53,6 +64,12 @@ function getComputerChoice() {
 // function to play a single round of rock, paper or scissors
 // note that playerSelection here is a function parameter, not the previous function
 function playRound(playerSelection, computerSelection) {
+
+    // display hidden values when the game starts
+    user_output_div.style.display = "block";
+    computer_output_div.style.display = "block";
+    player_points_div.style.display = "block";
+    button_reset.style.display = "inline-block";
 
     // debug output of both selections
     console.log("Player selected: " + playerSelection);
@@ -121,6 +138,9 @@ function counter(winner) {
         else if (computer_counter > user_counter)
             winner_selection_content.innerText = "Computer Wins";       // the computers counter is higher than the players? computer wins
 
+        // display the winner div block
+        winner_div.style.display = "block";
+
         // disable the buttons, so the user has to select first if he / she wants to play a new game
         button_rock.disabled = true;
         button_paper.disabled = true;
@@ -143,6 +163,13 @@ function reset() {
     user_selection_content.innerText = "";
     computer_selection_content.innerText = "";
     winner_selection_content.innerText = "";
+
+    // hide the divs and reset button when the game gets reset
+    user_output_div.style.display = "none";
+    computer_output_div.style.display = "none";
+    player_points_div.style.display = "none";
+    winner_div.style.display = "none";
+    button_reset.style.display = "none";
 
     // enable the buttons
     button_rock.disabled = false;
