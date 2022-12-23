@@ -11,6 +11,12 @@ const button_scissors = document.querySelector('#scissors');
 const user_selection_content = document.getElementById('user_selection');
 const computer_selection_content = document.getElementById('computer_selection');
 const winner_selection_content = document.getElementById('winner_selection');
+const user_points_content = document.getElementById('user_points');
+const computer_points_content = document.getElementById('computer_points');
+
+// set the default values for the displayed counters
+user_points_content.innerText = user_counter;
+computer_points_content.innerText = computer_counter;
 
 // function to generate a random computer selection for either rock, paper or scissors
 function getComputerChoice() {
@@ -84,8 +90,9 @@ function counter(winner) {
     else if(winner === "Computer Wins")
         computer_counter++;
     
-    console.log(user_counter);
-    console.log(computer_counter);
+    user_points_content.innerText = user_counter;
+    
+    computer_points_content.innerText = computer_counter;
 }
 
 // adds an event listener for the users rock button click event
