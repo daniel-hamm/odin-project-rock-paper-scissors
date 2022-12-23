@@ -72,8 +72,8 @@ function playRound(playerSelection, computerSelection) {
     button_reset.style.display = "inline-block";
 
     // debug output of both selections
-    console.log("Player selected: " + playerSelection);
-    console.log("Computer selected: " + computerSelection);
+    //console.log("Player selected: " + playerSelection);
+    //console.log("Computer selected: " + computerSelection);
 
     // same selection -> draw
     if(playerSelection === computerSelection)
