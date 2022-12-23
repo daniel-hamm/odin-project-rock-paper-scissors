@@ -7,6 +7,7 @@ let rounds_counter = 0;         // global var to count the rounds
 const button_rock = document.querySelector('#rock');
 const button_paper = document.querySelector('#paper');
 const button_scissors = document.querySelector('#scissors');
+const button_reset = document.querySelector('#reset');
 
 // js get elements to dynamically change their content
 const user_selection_content = document.getElementById('user_selection');
@@ -119,11 +120,6 @@ function counter(winner) {
             winner_selection_content.innerText = "Player Wins";         // the players counter is higher than the computers? player wins
         else if (computer_counter > user_counter)
             winner_selection_content.innerText = "Computer Wins";       // the computers counter is higher than the players? computer wins
-        
-        // reset all counters to 0 to start over again
-        rounds_counter = 0;
-        user_counter = 0;
-        computer_counter = 0;
 
         // disable the buttons, so the user has to select first if he / she wants to play a new game
         button_rock.disabled = true;
@@ -131,6 +127,28 @@ function counter(winner) {
         button_scissors.disabled = true;
 
     }
+}
+
+// function to reset the game
+function reset() {
+
+    // reset all counters to 0 to start over again
+    rounds_counter = 0;
+    user_counter = 0;
+    computer_counter = 0;
+
+    // reset all html texts
+    user_points_content.innerText = 0;
+    computer_points_content.innerText = 0;
+    user_selection_content.innerText = "";
+    computer_selection_content.innerText = "";
+    winner_selection_content.innerText = "";
+
+    // enable the buttons
+    button_rock.disabled = false;
+    button_paper.disabled = false;
+    button_scissors.disabled = false;
+
 }
 
 // adds an event listener for the users rock button click event
@@ -166,5 +184,13 @@ button_scissors.addEventListener('click', () => {
     // we give the playRound function the users choice an the return of the computer generated choice function
     // we also use the return of playRound to access the counter function to count the players points
     counter(playRound("Scissors", getComputerChoice()));
+
+});
+
+// adds an event listener for the reset button click event
+button_reset.addEventListener('click', () => {
+
+    //call the reset function
+    reset();
 
 });
